@@ -1,15 +1,19 @@
+
 {
   "name": "flowforge",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "electron.cjs",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "desktop": "electron .",
+    "dist": "npm run build && electron-builder"
   },
   "dependencies": {
     "@vitejs/plugin-react": "latest",
@@ -19,10 +23,31 @@
     "vite": "latest"
   },
   "devDependencies": {
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3",
     "eslint": "latest",
     "eslint-plugin-react-hooks": "latest",
     "eslint-plugin-react-refresh": "latest",
     "gh-pages": "latest",
     "globals": "latest"
+  },
+  "build": {
+    "appId": "com.flowforge.desktop",
+    "productName": "FlowForge",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron.cjs",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }
