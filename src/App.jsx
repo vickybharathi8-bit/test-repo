@@ -41,20 +41,25 @@ const initialEdges = [
 
 function FlowBlock({ data, selected }) {
   return (
-    <div className={`flow-block ${selected ? 'selected' : ''}`}>
-      <Handle type="target" position={Position.Top} />
-      <div className="block-top">
-        <span className={`block-icon ${data.kind.toLowerCase()}`}>
-          {data.kind === 'TRIGGER' ? '⚡' : data.kind === 'CONDITION' ? '◇' : '↗'}
-        </span>
-        <span className="block-kind">{data.kind}</span>
-        <span className="live-dot" />
-      </div>
-      <div className="block-label">{data.label}</div>
-      <div className="block-detail">{data.detail}</div>
-      <Handle type="source" position={Position.Bottom} />
+  <div className={`flow-block ${selected ? 'selected' : ''}`}>
+    <Handle type="target" position={Position.Top} />
+
+    <div className="block-top">
+      <span className={`block-icon ${data.kind.toLowerCase()}`}>
+        {data.kind === 'TRIGGER' ? '⚡' : data.kind === 'CONDITION' ? '◇' : '↗'}
+      </span>
+      <span className="block-kind">{data.kind}</span>
+      <span className="live-dot" />
     </div>
-  );
+
+    <div className="welcome-message">Welcome to Vicky's FlowForge!</div>
+
+    <div className="block-label">{data.label}</div>
+    <div className="block-detail">{data.detail}</div>
+
+    <Handle type="source" position={Position.Bottom} />
+  </div>
+);
 }
 
 const nodeTypes = { flowBlock: FlowBlock };
